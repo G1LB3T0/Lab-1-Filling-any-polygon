@@ -1,4 +1,4 @@
-# Proyecto Polygon
+# Laboratorio Polygon
 
 Este laboratorio es una aplicación en Rust que utiliza la librería Raylib para dibujar y rellenar polígonos en imágenes. Implementa el algoritmo scan-line para rellenar polígonos definidos por sus vértices.
 
