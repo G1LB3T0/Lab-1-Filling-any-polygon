@@ -173,11 +173,33 @@ fn main() {
     image.export_image("poligono2_filled.png");
 
     //voy con el 3er poligono
+    // Limpiar la imagen para el tercer polÃ­gono
+    for y in 0..image.height() {
+        for x in 0..image.width() {
+            image.draw_pixel(x, y, Color::BLACK);
+        }
+    }
+    
+    let vertices3 = vec![
+        Vector2 { x: 377.0, y: 249.0 },
+        Vector2 { x: 411.0, y: 197.0 },
+        Vector2 { x: 436.0, y: 249.0 },
+    ];
+
+    fill_polygon(&mut image, &vertices3, Color::GREEN);
+    for i in 0..vertices3.len() - 1 {
+        line(&mut image, vertices3[i], vertices3[i + 1], Color::WHITE);
+    }
+    line(&mut image, vertices3[vertices3.len() - 1], vertices3[0], Color::WHITE);
+
+    image.export_image("poligono3_filled.png");
+
+    //4to y 5to poligono
     let image_height = 1500;
     let image_width = 1200;
     let mut image = Image::gen_image_color(image_width, image_height, Color::BLACK);    
 
-    let vertices3 = vec![
+    let vertices4 = vec![
         Vector2 { x: 413.0, y: 177.0 },
         Vector2 { x: 448.0, y: 159.0 },
         Vector2 { x: 502.0, y: 88.0 },
@@ -198,7 +220,7 @@ fn main() {
         Vector2 { x: 466.0, y: 180.0 },
     ];
 
-    let vertices4 = vec![
+    let vertices5 = vec![
     Vector2 { x: 682.0, y: 175.0 },
     Vector2 { x: 708.0, y: 120.0 },
     Vector2 { x: 735.0, y: 148.0 },
@@ -207,19 +229,19 @@ fn main() {
 
     
 
-    // Rellenar el poligono 3 con un hueco (el poligono 4)
-    fill_polygon_with_hole(&mut image, &vertices3, &vertices4, Color::BLUE, Color::BLACK);
-    for i in 0..vertices3.len() - 1 {
-        line(&mut image, vertices3[i], vertices3[i + 1], Color::RED);
-    }
-    line(&mut image, vertices3[vertices3.len() - 1], vertices3[0], Color::RED);
-
+    // Rellenar el poligono 3 con un hoyo (el poligono 4)
+    fill_polygon_with_hole(&mut image, &vertices4, &vertices5, Color::BLUE, Color::BLACK);
     for i in 0..vertices4.len() - 1 {
-        line(&mut image, vertices4[i], vertices4[i + 1], Color::WHITE);
+        line(&mut image, vertices4[i], vertices4[i + 1], Color::RED);
     }
-    line(&mut image, vertices4[vertices4.len() - 1], vertices4[0], Color::WHITE);
+    line(&mut image, vertices4[vertices4.len() - 1], vertices4[0], Color::RED);
 
-    image.export_image("poligono3_filled.png");
+    for i in 0..vertices5.len() - 1 {
+        line(&mut image, vertices5[i], vertices5[i + 1], Color::WHITE);
+    }
+    line(&mut image, vertices5[vertices5.len() - 1], vertices5[0], Color::WHITE);
+
+    image.export_image("poligono4_y_5_filled.png");
 
     
 }

@@ -14,7 +14,7 @@ Este laboratorio es una aplicación en Rust que utiliza la librería Raylib para
 
 ## ¿Cómo usar?
 1. Clona este repositorio o descarga los archivos.
-2. Entra a la carpeta `polygon`.
+2. Entra a la carpeta `Lab-1-Filling-any-polygon`.
 3. Ejecuta:
    ```
    cargo run
