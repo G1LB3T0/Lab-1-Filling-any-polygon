@@ -120,9 +120,8 @@ pub fn fill_polygon_with_hole(
 }
 
 fn main() {
-    let image_width = 500;
-    let image_height = 500;
-
+    let image_width = 800;
+    let image_height = 600;
     let mut image = Image::gen_image_color(image_width, image_height, Color::BLACK);
 
     let vertices1 = vec![
@@ -139,24 +138,11 @@ fn main() {
     ];
 
     fill_polygon(&mut image, &vertices1, Color::ORANGE);
-
     for i in 0..vertices1.len() - 1 {
         line(&mut image, vertices1[i], vertices1[i + 1], Color::YELLOW);
     }
     line(&mut image, vertices1[9], vertices1[0], Color::YELLOW);
 
-    image.export_image("poligono1_filled.png");
-
-    //voy con el 2do poligono
-
-
-    //esta funcion es para limpiar la imagen
-    for y in 0..image.height() {
-        for x in 0..image.width() {
-            image.draw_pixel(x, y, Color::BLACK);
-        }
-    }
-    
     let vertices2 = vec![
         Vector2 { x: 321.0, y: 335.0 },
         Vector2 { x: 288.0, y: 286.0 },
@@ -170,16 +156,6 @@ fn main() {
     }
     line(&mut image, vertices2[vertices2.len() - 1], vertices2[0], Color::WHITE);
 
-    image.export_image("poligono2_filled.png");
-
-    //voy con el 3er poligono
-    // Limpiar la imagen para el tercer polÃ­gono
-    for y in 0..image.height() {
-        for x in 0..image.width() {
-            image.draw_pixel(x, y, Color::BLACK);
-        }
-    }
-    
     let vertices3 = vec![
         Vector2 { x: 377.0, y: 249.0 },
         Vector2 { x: 411.0, y: 197.0 },
@@ -191,13 +167,6 @@ fn main() {
         line(&mut image, vertices3[i], vertices3[i + 1], Color::WHITE);
     }
     line(&mut image, vertices3[vertices3.len() - 1], vertices3[0], Color::WHITE);
-
-    image.export_image("poligono3_filled.png");
-
-    //4to y 5to poligono
-    let image_height = 1500;
-    let image_width = 1200;
-    let mut image = Image::gen_image_color(image_width, image_height, Color::BLACK);    
 
     let vertices4 = vec![
         Vector2 { x: 413.0, y: 177.0 },
@@ -221,15 +190,12 @@ fn main() {
     ];
 
     let vertices5 = vec![
-    Vector2 { x: 682.0, y: 175.0 },
-    Vector2 { x: 708.0, y: 120.0 },
-    Vector2 { x: 735.0, y: 148.0 },
-    Vector2 { x: 739.0, y: 170.0 },
+        Vector2 { x: 682.0, y: 175.0 },
+        Vector2 { x: 708.0, y: 120.0 },
+        Vector2 { x: 735.0, y: 148.0 },
+        Vector2 { x: 739.0, y: 170.0 },
     ];
 
-    
-
-    // Rellenar el poligono 3 con un hoyo (el poligono 4)
     fill_polygon_with_hole(&mut image, &vertices4, &vertices5, Color::BLUE, Color::BLACK);
     for i in 0..vertices4.len() - 1 {
         line(&mut image, vertices4[i], vertices4[i + 1], Color::RED);
@@ -241,7 +207,5 @@ fn main() {
     }
     line(&mut image, vertices5[vertices5.len() - 1], vertices5[0], Color::WHITE);
 
-    image.export_image("poligono4_y_5_filled.png");
-
-    
+    image.export_image("output.png");
 }
