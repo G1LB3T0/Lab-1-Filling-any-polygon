@@ -44,9 +44,6 @@ struct Intersection {
     slope: f32,
 }
 
-// Funcion para rellenar un poligono usando el algoritmo scan-line
-// Este algoritmo recorre la imagen linea por linea horizontalmente
-// y determina que segmentos estan dentro del poligono para pintarlos
 pub fn fill_polygon(
     image: &mut Image,
     vertices: &[Vector2],
@@ -109,6 +106,17 @@ pub fn fill_polygon(
             }
         }
     }
+}
+
+pub fn fill_polygon_with_hole(
+    image: &mut Image,
+    exterior: &[Vector2],
+    hole: &[Vector2],
+    fill_color: Color,
+    bg_color: Color,
+) {
+    fill_polygon(image, exterior, fill_color);
+    fill_polygon(image, hole, bg_color);
 }
 
 fn main() {
@@ -199,17 +207,17 @@ fn main() {
 
     
 
-    fill_polygon(&mut image, &vertices3, Color::BLUE);
+    // Rellenar el poligono 3 con un hueco (el poligono 4)
+    fill_polygon_with_hole(&mut image, &vertices3, &vertices4, Color::BLUE, Color::BLACK);
     for i in 0..vertices3.len() - 1 {
         line(&mut image, vertices3[i], vertices3[i + 1], Color::RED);
     }
     line(&mut image, vertices3[vertices3.len() - 1], vertices3[0], Color::RED);
 
     for i in 0..vertices4.len() - 1 {
-        line(&mut image, vertices4[i], vertices4[i + 1], Color::GREEN);
+        line(&mut image, vertices4[i], vertices4[i + 1], Color::WHITE);
     }
-    line(&mut image, vertices4[vertices4.len() - 1], vertices4[0], Color::GREEN);
-
+    line(&mut image, vertices4[vertices4.len() - 1], vertices4[0], Color::WHITE);
 
     image.export_image("poligono3_filled.png");
 
