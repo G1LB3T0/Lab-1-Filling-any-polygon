@@ -1,0 +1,18 @@
+# Archivos y carpetas de Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Archivos de Raylib o imágenes generadas
+*.png
+*.jpg
+*.bmp
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de editores
+.idea/
+.vscode/
+*.swp 
