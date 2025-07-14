@@ -207,5 +207,5 @@ fn main() {
     }
     line(&mut image, vertices5[vertices5.len() - 1], vertices5[0], Color::WHITE);
 
-    image.export_image("output.png");
+    image.export_image("out.bmp");
 }
